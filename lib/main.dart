@@ -1,3 +1,4 @@
+import 'dashboard_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -44,12 +45,7 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
-      body: const Center(
-        child: Text(
-          'Welcome to Smart Business App',
-          style: TextStyle(fontSize: 20),
-        ),
-      ),
+      body:const DashboardScreen(),
     );
   }
 }
