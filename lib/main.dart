@@ -1,3 +1,4 @@
+import 'inventory_screen.dart';
 import 'dashboard_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -34,12 +35,20 @@ class HomeScreen extends StatelessWidget {
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
-          children: const [
+          children:[
             DrawerHeader(
               child: Text('Menu', style: TextStyle(fontSize: 24)),
             ),
             ListTile(title: Text('Dealers')),
-            ListTile(title: Text('Inventory')),
+            ListTile(
+  title: const Text('Inventory'),
+  onTap: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const InventoryScreen()),
+    );
+  },
+),
             ListTile(title: Text('Sales')),
             ListTile(title: Text('Workers')),
           ],
