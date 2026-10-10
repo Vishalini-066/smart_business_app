@@ -1,8 +1,15 @@
+import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'inventory_screen.dart';
 import 'dashboard_screen.dart';
-import 'package:flutter/material.dart';
+import'dealers_screen.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Supabase.initialize(
+    url: 'https://vfgyjlquqovqcmlsqbza.supabase.co',
+    anonKey: 'sb_publishable_4NxYJqogDAdJEgSeMkVxjQ_yuUir09C',
+  );
   runApp(const SmartBusinessApp());
 }
 
@@ -35,26 +42,35 @@ class HomeScreen extends StatelessWidget {
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
-          children:[
-            DrawerHeader(
+          children: [
+            const DrawerHeader(
               child: Text('Menu', style: TextStyle(fontSize: 24)),
             ),
-            ListTile(title: Text('Dealers')),
             ListTile(
-  title: const Text('Inventory'),
+  title: const Text('Dealers'),
   onTap: () {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const InventoryScreen()),
+      MaterialPageRoute(builder: (context) => const DealersScreen()),
     );
   },
 ),
-            ListTile(title: Text('Sales')),
-            ListTile(title: Text('Workers')),
+            ListTile(
+              title: const Text('Inventory'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const InventoryScreen()),
+                );
+              },
+            ),
+            const ListTile(title: Text('Sales')),
+            const ListTile(title: Text('Workers')),
           ],
         ),
       ),
-      body:const DashboardScreen(),
+      body: const DashboardScreen(),
     );
   }
 }
